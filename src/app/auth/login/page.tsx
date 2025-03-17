@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
+import './login.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -23,63 +24,47 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-mauritania-800 flex items-center justify-center px-4">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
+    <div className="login-container">
+      <div className="login-box">
         <div>
-          <h2 className="text-3xl font-bold text-center text-mauritania-600">
-            Connexion
-          </h2>
+          <h2 className="login-title">Connexion</h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm">
+            <div className="error-message">
               {error}
             </div>
           )}
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="text-mauritania-600">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-mauritania-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-mauritania-500 focus:border-mauritania-500"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="text-mauritania-600">
-                Mot de passe
-              </label>
-              <input
-                id="password"
-                type="password"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-mauritania-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-mauritania-500 focus:border-mauritania-500"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input
+              id="email"
+              type="email"
+              required
+              className="form-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">Mot de passe</label>
+            <input
+              id="password"
+              type="password"
+              required
+              className="form-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
           <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-mauritania-800 bg-gold-400 hover:bg-gold-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 transition-colors"
-            >
+            <button type="submit" className="login-button">
               Se connecter
             </button>
           </div>
-
-          <div className="text-center">
-            <Link
-              href="/auth/signup"
-              className="text-gold-400 hover:text-gold-300 transition-colors"
-            >
-              Pas encore de compte ? S&apos;inscrire
+          <div className="signup-link">
+            <Link href="/auth/signup">
+              Pas encore de compte ? S'inscrire
             </Link>
           </div>
         </form>
