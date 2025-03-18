@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import './login.css';
+import { div } from 'framer-motion/client';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,7 +25,15 @@ export default function LoginPage() {
   };
 
   return (
+    <div className="container">
+      
+      <div  className="logo">
+        <a href=""></a>
+      </div>
     <div className="login-container">
+      
+
+
       <div className="login-box">
         <div>
           <h2 className="login-title">Connexion</h2>
@@ -69,6 +78,7 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }

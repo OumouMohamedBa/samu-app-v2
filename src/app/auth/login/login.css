@@ -1,18 +1,44 @@
+
+body {
+  
+  background: url("../../../../public/login_background.jpg") no-repeat center;
+  background-size: cover;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  height: 100vh;
+
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 210px;
+  background: url("../../../../public/samu_logo.png") no-repeat center center;
+  background-size: contain; 
+  ;
+
+}
+
 .login-container {
-  min-height: 100vh;
-  background-color: #166534;
+  
+  
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 16px;
 }
 
+
+
 .login-box {
   max-width: 28rem;
   width: 100%;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.603);
   padding: 32px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,7 +46,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   text-align: center;
-  color: #16a34a;
+  color: white;
   margin-bottom: 16px;
 }
 
@@ -79,3 +105,4 @@
 .signup-link a:hover {
   color: #fde047;
 }
+  
