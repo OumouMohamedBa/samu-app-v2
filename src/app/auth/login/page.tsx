@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
+<<<<<<< HEAD
 import styles from './login.module.css';
+=======
+import './login.css';
+import { div } from 'framer-motion/client';
+>>>>>>> 8cac64dae5631ccf375bb3298906f4f9460b1eb7
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,6 +29,7 @@ export default function LoginPage() {
   };
 
   return (
+<<<<<<< HEAD
     <div className={styles.container}>
       <div className={styles.box}>
         <h2 className={styles.title}>Connexion</h2>
@@ -31,6 +37,29 @@ export default function LoginPage() {
           {error && <div className={styles.errorMessage}>{error}</div>}
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>Email</label>
+=======
+    <div className="container">
+      
+      <div  className="logo">
+        <a href=""></a>
+      </div>
+    <div className="login-container">
+      
+
+
+      <div className="login-box">
+        <div>
+          <h2 className="login-title">Connexion</h2>
+        </div>
+        <form className="login-form" onSubmit={handleSubmit}>
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email</label>
+>>>>>>> 8cac64dae5631ccf375bb3298906f4f9460b1eb7
             <input
               id="email"
               type="email"
@@ -57,6 +86,7 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }
