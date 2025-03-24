@@ -1,0 +1,227 @@
+/* 🟢 Conteneur global du tableau */
+.tableContainer {
+  width: 100%;
+ 
+  max-height: 100vh; /* Empêche un débordement vertical trop important */
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 🟢 Message si aucun utilisateur n'est trouvé */
+.emptyMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  padding: 20px;
+}
+
+/* 🟢 Tableau principal */
+.usersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  color: #004d33;
+  font-size: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 🟡 Fixation de l'en-tête lors du défilement */
+.usersTable thead {
+  position: sticky;
+  top: 0;
+  background-color: #007b3d;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  z-index: 10;
+}
+
+
+/* 🟡 Style des colonnes */
+.usersTable th {
+  padding: 14px;
+  font-size: 1rem;
+  border-bottom: 2px solid #004d33;
+}
+
+/* 🟢 Lignes du tableau */
+.usersTable td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap; /* Empêche le retour à la ligne dans les cellules */
+}
+
+/* 🟢 Alternance des couleurs */
+.usersTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* 🟢 Effet au survol */
+.usersTable tr:hover {
+  background-color: rgba(0, 98, 51, 0.15);
+  transition: background 0.3s ease;
+}
+
+/* 🟢 Ajustement des colonnes pour éviter qu'elles prennent trop d'espace */
+.usersTable td:nth-child(5), 
+.usersTable td:nth-child(6), 
+.usersTable td:nth-child(7) {
+  width: 150px;
+  text-align: center;
+}
+
+/* 🟢 Style du rôle avec icône */
+.roleCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 🟢 Texte du rôle */
+.roleText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: #004d33;
+}
+
+/* 🟢 Icône de modification */
+.editIcon {
+  cursor: pointer;
+  color: #FFD700;
+  transition: color 0.3s ease;
+}
+
+.editIcon:hover {
+  color: #E6C200;
+}
+
+/* 🟢 Sélecteur de rôle */
+.roleSelect {
+  padding: 8px 10px;
+  border: 1px solid #004d33;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #004d33;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.roleSelect:hover {
+  border-color: #FFD700;
+  background-color: #f5f5f5;
+}
+
+.roleSelect:focus {
+  outline: none;
+  border-color: #FFD700;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* 🟢 Statut actif/inactif */
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+.inactive {
+  color: red;
+  font-weight: bold;
+}
+
+/* 🟢 Boutons d'action */
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 🟢 Boutons interactifs */
+.toggleButton, .resetButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: transform 0.2s;
+}
+
+.toggleButton:hover, .resetButton:hover {
+  transform: scale(1.1);
+}
+
+/* 🟢 Icônes de statut */
+.activeIcon {
+  color: green;
+}
+
+.inactiveIcon {
+  color: red;
+}
+
+/* 🟢 Bouton de réinitialisation */
+.resetButton {
+  color: #ff9800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 🟢 Message de succès */
+.successMessage {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* 🟢 Conteneur de la barre de recherche */
+.searchContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #004d33;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* 🟢 Icône de recherche */
+.searchIcon {
+  color: #004d33;
+  margin-right: 8px;
+}
+
+/* 🟢 Champ de recherche */
+.searchInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #004d33;
+  background: none;
+}
+
+/* 🟢 Champ de recherche sur mobile */
+@media (max-width: 768px) {
+  .searchContainer {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* 🟢 Champ de recherche sur mobile */
+@media (max-width: 768px) {
+  .searchContainer {
+    width: 100%;
+    max-width: 100%;
+  }
+}

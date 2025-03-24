@@ -1,0 +1,73 @@
+/* Conteneur principal */
+.adminContainer {
+  display: flex;
+  
+  width: 100%;
+  background-color: #f5f5f5; /* Gris clair pour un effet moderne */
+}
+
+/* Conteneur des utilisateurs */
+.usersContainer {
+  flex: 5;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px; 
+}
+
+/* Titre principal */
+.title {
+  font-size: 1.8rem;
+  color: #006233; /* Vert Mauritanie */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style du profil utilisateur */
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.userProfile:hover {
+  transform: translateY(-5px);
+}
+
+/* Style des textes */
+.userProfile h2 {
+  color: #006233;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.userProfile p {
+  color: #004d33;
+  font-size: 1rem;
+}
+
+/* Bouton d'édition */
+.editButton {
+  background-color: #FFD700;
+  color: #006233;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.editButton:hover {
+  background-color: #E6C200;
+}
+.content {
+  margin-top: 80px; /* Ajuste selon la hauteur du header */
+}

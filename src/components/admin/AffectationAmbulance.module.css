@@ -1,0 +1,87 @@
+.adminContainer {
+  display: flex;
+}
+
+.affectationContainer {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  margin-top: 100px;
+}
+
+.content {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #005f3c;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.modeSelector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modeButton {
+  padding: 12px 18px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.modeButton.active {
+  background-color: #005f3c;
+  color: white;
+}
+
+.formSection {
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 8px;
+}
+
+.formField {
+  margin-bottom: 15px;
+}
+
+.formField label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formField select,
+.formField input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.assignButton {
+  background: #005f3c;
+  color: white;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.assignButton:hover {
+  background: #004a2a;
+}

@@ -1,0 +1,62 @@
+.adminContainer {
+    display: flex;
+    width: 100%;
+  }
+  
+  .historyContainer {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 100px;
+  }
+  
+  .content {
+    padding: 20px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007b3d; /* Couleur du drapeau mauritanien */
+    text-align: center;
+  }
+  
+  .historyTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+  }
+  
+  .historyTable th, .historyTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .historyTable th {
+    background-color: #007b3d;
+    color: white;
+  }
+  
+  .terminée {
+    color: green;
+  }
+  
+  .en\ cours {
+    color: orange;
+  }
+  
+  .annulée {
+    color: red;
+  }
+  
+  .noData {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: gray;
+  }
+  

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
-import './login.css';
+import styles from './login.module.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,48 +24,36 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <div>
-          <h2 className="login-title">Connexion</h2>
-        </div>
-        <form className="login-form" onSubmit={handleSubmit}>
-          {error && (
-            <div className="error-message">
-              {error}
-            </div>
-          )}
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">Email</label>
+    <div className={styles.container}>
+      <div className={styles.box}>
+        <h2 className={styles.title}>Connexion</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          {error && <div className={styles.errorMessage}>{error}</div>}
+          <div className={styles.formGroup}>
+            <label htmlFor="email" className={styles.label}>Email</label>
             <input
               id="email"
               type="email"
               required
-              className="form-input"
+              className={styles.input}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password" className="form-label">Mot de passe</label>
+          <div className={styles.formGroup}>
+            <label htmlFor="password" className={styles.label}>Mot de passe</label>
             <input
               id="password"
               type="password"
               required
-              className="form-input"
+              className={styles.input}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div>
-            <button type="submit" className="login-button">
-              Se connecter
-            </button>
-          </div>
-          <div className="signup-link">
-            <Link href="/auth/signup">
-              Pas encore de compte ? S'inscrire
-            </Link>
+          <button type="submit" className={styles.button}>Se connecter</button>
+          <div className={styles.signupLink}>
+            <Link href="/auth/signup">Pas encore de compte ? S'inscrire</Link>
           </div>
         </form>
       </div>

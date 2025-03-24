@@ -1,0 +1,200 @@
+/* Styles globaux */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #166534, #0d4725);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.box {
+  max-width: 28rem;
+  width: 100%;
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  color: #166534;
+  margin-bottom: 16px;
+}
+
+/* Formulaire */
+.form {
+  margin-top: 24px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.formLabel {
+  color: #166534;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #16a34a;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.formInput:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 6px rgba(250, 204, 21, 0.5);
+}
+
+/* Bouton */
+.button {
+  width: 100%;
+  padding: 10px 16px;
+  background-color: #facc15;
+  color: #166534;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #fde047;
+}
+
+/* Lien d'inscription */
+.signupLink {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.link {
+  color: #facc15;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #fde047;
+}
+
+/* Message d'erreur */
+.errorMessage {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #007a33, #004d26); /* Dégradé vert */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.box {
+  max-width: 28rem;
+  width: 100%;
+  background-color: white;
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: center;
+  color: #006233; /* Vert profond */
+  margin-bottom: 16px;
+}
+
+.form {
+  margin-top: 32px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  color: #006233;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #006233;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.input:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FFD700;
+  color: #004d26;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #e6c200;
+}
+
+.signupLink {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.signupLink a {
+  color: #FFD700;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signupLink a:hover {
+  text-decoration: underline;
+}
+
+/* Style pour les erreurs */
+.errorMessage {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
