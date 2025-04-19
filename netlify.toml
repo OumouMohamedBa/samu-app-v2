@@ -1,0 +1,11 @@
+[build]
+  command = "yarn build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+  [plugins.inputs]
+    skipEsLint = true
+    skipFormatCheck = true
+    skipTypeCheck = true
