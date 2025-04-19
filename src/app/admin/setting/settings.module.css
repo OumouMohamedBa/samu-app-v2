@@ -1,25 +1,49 @@
+/* Structure globale */
 .settingsContainer {
-    display: flex;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
-  
-  /* Contenu principal */
+  display: flex;
+  height: 110vh;
+  width: 100%;
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-y: auto;
+}
+
+/* Contenu principal à droite de la sidebar */
+.mainContent {
+  flex: 1;
+  padding: 10px;
+  padding-top: 1px; /* Pour compenser le header fixe */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
+
+/* Bloc contenant les paramètres */
+.settingsContent {
+  width: 100%;
+  max-width: 750px;
+  padding: 30px;
+ 
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation d’apparition fluide */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
   .mainContent {
-    flex: 1;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
-  
-  /* Conteneur des paramètres */
+
   .settingsContent {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
   }
-  
+}

@@ -1,7 +1,7 @@
 
 body {
   
-  background: url("../../../../public/login_background.jpg") no-repeat center;
+  background-color: #f5f5f5;
   background-size: cover;
   image-rendering: crisp-edges;
   image-rendering: -webkit-optimize-contrast;

@@ -1,7 +1,7 @@
 /* 🌟 Sidebar fixe et stylisée */
 .sidebar {
   width: 260px;
-  height: 100vh;
+  height: flex;
   background: linear-gradient(to bottom, #004d33, #003322);
   padding: 20px;
   display: flex;
@@ -9,42 +9,29 @@
   justify-content: space-between;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
-
-  
+  position: relative;
 }
 
-/* 🌟 Contenu principal (décalé pour ne pas être caché) */
-.mainContent {
-  margin-left: 260px; /* ✅ Décale le contenu */
-  padding: 20px;
-  width: calc(100% - 260px);
-  transition: margin-left 0.3s ease-in-out;
+/* 🌟 Sidebar rétractée */
+.sidebar.collapsed {
+  width: 70px; /* Réduit la taille de la sidebar */
+  padding: 10px 0; /* Réduit les marges */
+  position: relative;
 }
 
-/* 🚑 Logo */
-.logo {
-  font-size: 1.7rem;
-  font-weight: bold;
-  color: #FFD700; /* ✅ Jaune Mauritanie */
-  text-align: center;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
+/* 🌟 Masquer le texte dans le menu lorsque la sidebar est rétractée */
+.sidebar.collapsed .menuLink span,
+.sidebar.collapsed .menuBottomLink span {
+  display: none;
 }
 
-/* 📌 Liste des menus */
-.menu,
-.menuBottom {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* 🌟 Icônes dans la sidebar rétractée */
+.sidebar.collapsed .menuLink svg,
+.sidebar.collapsed .menuBottomLink svg {
+  font-size: 24px; /* Augmente la taille des icônes en mode rétracté */
 }
 
-.menuItem,
-.menuBottomItem {
-  margin-bottom: 12px;
-}
-
-/* 🔗 Liens du menu */
+/* 🌟 Liens du menu */
 .menuLink,
 .menuBottomLink {
   display: flex;
@@ -59,10 +46,10 @@
   gap: 15px;
 }
 
-/* 🏆 Icônes */
+/* 🌟 Icônes plus grandes */
 .menuLink svg,
 .menuBottomLink svg {
-  font-size: 20px; /* 🔥 Icônes plus grandes */
+  font-size: 20px; /* Icônes plus grandes */
 }
 
 /* 🟡 Effet au survol */
@@ -83,13 +70,13 @@
 /* 📌 Version mobile (sidebar compacte) */
 @media (max-width: 768px) {
   .sidebar {
-    width: 70px; /* 🔹 Réduit la taille */
+    width: 70px; /* Réduit la taille */
     padding: 10px;
   }
 
   .menuLink span,
   .menuBottomLink span {
-    display: none; /* 🏆 Cache le texte pour gagner de l'espace */
+    display: none; /* Cache le texte pour gagner de l'espace */
   }
 
   .menuLink,
@@ -98,7 +85,72 @@
   }
 
   .mainContent {
-    margin-left: 70px; /* ✅ Ajuste le contenu */
+    margin-left: 70px; /* Ajuste le contenu */
+    width: calc(100% - 70px);
+  }
+}
+
+/* 🚑 Logo */
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #FFD700; /* Jaune Mauritanie */
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* 📌 Liste des menus */
+.menu,
+.menuBottom {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 5vh;
+  margin-bottom: 200vh;
+}
+
+.menuItem,
+.menuBottomItem {
+  margin-bottom: 12px;
+}
+
+/* 🌟 Bouton pour ouvrir/fermer la sidebar */
+.toggleButton {
+  position: absolute;
+  top: 10px;
+  left: 80%;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .toggleButton {
+  transform: rotate(180deg); /* Tourner le bouton lorsque la sidebar est fermée */
+}
+
+/* 📌 Version mobile (sidebar compacte) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px; /* Réduit la taille */
+    padding: 10px;
+  }
+
+  .menuLink span,
+  .menuBottomLink span {
+    display: none; /* Cache le texte pour gagner de l'espace */
+  }
+
+  .menuLink,
+  .menuBottomLink {
+    justify-content: center;
+  }
+
+  .mainContent {
+    margin-left: 70px; /* Ajuste le contenu */
     width: calc(100% - 70px);
   }
 }

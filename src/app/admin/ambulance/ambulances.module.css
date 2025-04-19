@@ -1,7 +1,7 @@
 /* Conteneur principal avec la sidebar */
 .adminContainer {
     display: flex;
-    height: 100vh;
+    height: 110vh;
     background-color: #f4f4f4;
   }
   

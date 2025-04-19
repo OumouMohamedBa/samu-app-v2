@@ -1,47 +1,89 @@
+/* 🟢 Conteneur principal */
 .adminContainer {
-    display: flex;
-  }
-  
-  .statsContainer {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #f8f9fa;
-    margin-top: 100px;
-  }
-  
-  .title {
-    text-align: center;
-    color: #006400;
-    margin-bottom: 20px;
-  }
-  
+  display: flex;
+  height: 100vh;
+}
+
+/* 🟢 Conteneur des statistiques */
+.statsContainer {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f8f9fa;
+  margin-top: 100px;
+  overflow-y: auto;
+}
+
+/* 🟢 Titre */
+.title {
+  text-align: center;
+  color: #006400;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* 🟢 Grille des statistiques */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+/* 🟢 Cartes de statistiques */
+.statCard {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 🟢 Titre des cartes */
+.statCard h3 {
+  color: #006400;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* 🟢 Paragraphe des cartes */
+.statCard p {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* 🟢 Valeurs des cartes */
+.statCard strong {
+  font-size: 1.5rem;
+  color: #000;
+  font-weight: bold;
+}
+
+/* 🟢 Cartes d'urgence traitée (graphique) */
+.statCard .chartContainer {
+  width: 100%;
+  height: 200px;
+}
+
+/* 🟢 Responsiveness (pour les petits écrans) */
+@media (max-width: 768px) {
   .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: 1fr;
   }
-  
+
+  .title {
+    font-size: 1.5rem;
+  }
+
   .statCard {
-    background: white;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
   }
-  
-  .statCard h3 {
-    color: #006400;
-    margin-bottom: 10px;
-  }
-  
-  .statCard p {
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .statCard strong {
-    font-size: 18px;
-    color: #000;
-  }
-  
+}

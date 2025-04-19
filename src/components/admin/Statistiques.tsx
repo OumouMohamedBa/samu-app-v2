@@ -6,6 +6,11 @@ import { db } from '@/lib/firebase';
 import Sidebar from '@/components/admin/Sidebar';
 import Header from '@/components/admin/Header';
 import styles from './Statistiques.module.css';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Enregistrer les éléments nécessaires
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default function Statistiques() {
   const [stats, setStats] = useState({
@@ -17,14 +22,29 @@ export default function Statistiques() {
     ambulancesDisponibles: 0,
     medecins: 0,
     infirmiers: 0,
+    totalInterventions: 0,
+  });
+
+  // Exemple de données pour les graphiques sur les urgences
+  const [graphData, setGraphData] = useState({
+    labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'],
+    datasets: [
+      {
+        label: 'Urgences Traitées',
+        data: [12, 19, 3, 5, 2], // Exemple de données
+        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: 'rgba(75,192,192,0.2)',
+        fill: true, // pour remplir sous la ligne (optionnel)
+      },
+    ],
   });
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchUsersAndStats = async () => {
       try {
-        const usersCollection = collection(db, 'users'); // 📌 Assure-toi que la collection s'appelle bien "users"
+        const usersCollection = collection(db, 'users');
         const usersSnapshot = await getDocs(usersCollection);
-        
+
         let countMedecins = 0;
         let countInfirmiers = 0;
 
@@ -37,17 +57,30 @@ export default function Statistiques() {
           }
         });
 
+        const interventionsSnapshot = await getDocs(collection(db, 'interventions')); // Assure-toi que la collection d'interventions existe
+        const totalInterventions = interventionsSnapshot.size;
+
+        const ambulancesSnapshot = await getDocs(collection(db, 'ambulances')); // Assure-toi que la collection des ambulances existe
+        let ambulancesDisponibles = 0;
+        ambulancesSnapshot.forEach(doc => {
+          if (doc.data().disponible) {
+            ambulancesDisponibles++;
+          }
+        });
+
         setStats((prevStats) => ({
           ...prevStats,
           medecins: countMedecins,
           infirmiers: countInfirmiers,
+          totalInterventions: totalInterventions,
+          ambulancesDisponibles: ambulancesDisponibles,
         }));
       } catch (error) {
-        console.error("Erreur lors de la récupération des utilisateurs :", error);
+        console.error('Erreur lors de la récupération des données:', error);
       }
     };
 
-    fetchUsers();
+    fetchUsersAndStats();
   }, []);
 
   return (
@@ -80,6 +113,16 @@ export default function Statistiques() {
             <h3>Effectifs Médicaux</h3>
             <p>Médecins: <strong>{stats.medecins}</strong></p>
             <p>Infirmiers: <strong>{stats.infirmiers}</strong></p>
+          </div>
+
+          <div className={styles.statCard}>
+            <h3>Nombre Total d'Interventions</h3>
+            <p><strong>{stats.totalInterventions}</strong></p>
+          </div>
+
+          <div className={styles.statCard}>
+            <h3>Urgences Traitées (Graphique)</h3>
+            <Line data={graphData} />
           </div>
         </div>
       </div>

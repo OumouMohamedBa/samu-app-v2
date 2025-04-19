@@ -1,0 +1,213 @@
+/* 🟩 Structure principale */
+.adminContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+  overflow-y: auto;
+}
+
+.usersContainer {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* 🟩 Contenu */
+.content {
+  max-width: 1000px;
+  margin-top: 10%;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #006233;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 🟩 Container gestion */
+.gestionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* 🟩 Bouton Ajouter */
+.btnAjouter {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btnAjouter:hover {
+  background-color: #218838;
+}
+
+/* 🟩 Liste des bases SAMU et hôpitaux */
+.baseList, .hopitauxList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.baseList li, .hopitauxList li {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.baseList li span:first-child {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+}
+
+.baseList li svg {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.baseList li svg:hover {
+  transform: scale(1.2);
+}
+
+/* 🟩 Fenêtre modale générique */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  max-width: 500px;
+  
+  width: 100%;
+  margin-left: 100px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🟩 Animation modale */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🟩 Formulaire dans modale */
+.formSamu {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.formSamu input,
+.formSamu select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.2s ease-in-out;
+}
+
+.formSamu input:focus,
+.formSamu select:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+.formSamu button {
+  padding: 12px;
+  background-color: #006233;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formSamu button:hover {
+  background-color: #004d26;
+}
+
+/* 🟩 Carte intégrée */
+.mapContainer {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.mapContainer iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 12px;
+}
+/* 🟢 Icônes avec couleurs personnalisées */
+.iconEdit {
+  color: #28a745; /* Vert */
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.iconEdit:hover {
+  transform: scale(1.2);
+}
+
+.iconDelete {
+  color: #dc3545; /* Rouge */
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.iconDelete:hover {
+  transform: scale(1.2);
+}
+
+.iconMap {
+  color: #006233; /* Vert foncé */
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.iconMap:hover {
+  transform: scale(1.2);
+}

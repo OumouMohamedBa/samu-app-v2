@@ -1,0 +1,45 @@
+.container {
+    padding: 30px;
+    background-color: #f4fdf4;
+    border-radius: 12px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    color: #006233;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    flex: 1 1 200px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .card h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  
+  .card p {
+    font-size: 1.8rem;
+  }
+  
+  .total { border-left: 6px solid #006233; }
+  .enCours { border-left: 6px solid #FFA500; }
+  .traites { border-left: 6px solid #28a745; }
+  .echoues { border-left: 6px solid #dc3545; }
+  

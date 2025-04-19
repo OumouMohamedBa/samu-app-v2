@@ -9,7 +9,7 @@ import {
   onAuthStateChanged
 } from 'firebase/auth';
 import { auth, db } from '@/lib/firebase';
-import { doc, setDoc, getDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 import { UserData, UserRole } from '@/types/user';
 
 interface AuthContextType {
@@ -30,8 +30,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const SUPER_ADMIN_EMAIL = '21062@supnum.mr';
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
@@ -40,13 +38,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           // Vérifier si l'utilisateur existe déjà dans Firestore
           const userDocRef = doc(db, 'users', user.uid);
           const userDoc = await getDoc(userDocRef);
-          
+
+          console.log('Vérification des données de l\'utilisateur Firestore:', userDoc.data());
+
           if (!userDoc.exists()) {
             // Si l'utilisateur n'existe pas dans Firestore, le créer
             const now = new Date().toISOString();
             const newUserData: UserData = {
               email: user.email || '',
-              role: null,
+              role: null, // Initialisation avec 'null' pour le rôle
               createdAt: now,
               updatedAt: now,
               uid: user.uid
@@ -58,9 +58,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const unsubscribeDoc = onSnapshot(userDocRef, (doc) => {
             if (doc.exists()) {
               const data = doc.data();
+              console.log('Données récupérées de Firestore:', data); // Vérifie ici si 'role' est bien récupéré
+
               setUserData({
                 email: data.email || '',
-                role: data.role || null,
+                role: data.role || null, // On s'assure de récupérer le rôle
                 createdAt: data.createdAt || new Date().toISOString(),
                 updatedAt: data.updatedAt || data.createdAt || new Date().toISOString(),
                 uid: data.uid || user.uid
@@ -91,7 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Créer le document utilisateur dans Firestore avec l'UID
       const userData: UserData = {
         email,
-        role: null,
+        role: null, // Rôle null par défaut
         createdAt: now,
         updatedAt: now,
         uid: userCredential.user.uid
@@ -122,11 +124,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // La mise à jour du rôle peut maintenant être effectuée par n'importe quel admin
   const updateUserRole = async (userId: string, role: UserRole) => {
-    if (!user || user.email !== SUPER_ADMIN_EMAIL) {
-      throw new Error('Non autorisé à modifier les rôles');
-    }
-    
     try {
       const userDocRef = doc(db, 'users', userId);
       await setDoc(userDocRef, { 
@@ -139,7 +138,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const isAdmin = user?.email === SUPER_ADMIN_EMAIL;
+  // Vérification si l'utilisateur est un administrateur
+  const isAdmin = userData?.role === 'admin';
 
   return (
     <AuthContext.Provider 

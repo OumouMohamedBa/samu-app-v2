@@ -1,86 +1,99 @@
-/* Conteneur principal */
 .container {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 120px;
+  max-width: 600px;
+  margin: 120px auto 40px;
+  padding: 20px 25px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #006233;
+  font-weight: bold;
+}
+
+.message {
+  text-align: center;
+  font-weight: bold;
+  color: #006233;
+  background-color: #e6ffe6;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 1rem;
+  color: #004d33;
+  font-weight: 500;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.button {
+  margin-top: 8px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #006233;
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background-color: #004d26;
+  transform: scale(1.03);
+}
+
+.avatarPreview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 10px;
+  border: 2px solid #006233;
+}
+
+/* Checkbox notifications inline */
+.form label input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 15px;
   }
-  
-  /* Titre */
+
   .title {
-    font-size: 1.8rem;
-    color: #006233;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
-  
-  /* Message d'état */
-  .message {
-    text-align: center;
-    color: #006233;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  /* Formulaire */
-  .form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  /* Label */
-  .label {
-    font-size: 1rem;
-    color: #004d33;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  /* Input */
+
   .input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    font-size: 0.9rem;
   }
-  
-  /* Bouton générique */
+
   .button {
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
-    background: #006233;
-    color: white;
+    font-size: 0.95rem;
   }
-  
-  .button:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Bouton de déconnexion */
-  .logout {
-    background: #FFD700;
-    color: #006233;
-  }
-  
-  .logout:hover {
-    background: #E6C200;
-  }
-  
-  /* Bouton de suppression */
-  .delete {
-    background: #FF4B4B;
-    color: white;
-  }
-  
-  .delete:hover {
-    background: #D43F3F;
-  }
-  
+}

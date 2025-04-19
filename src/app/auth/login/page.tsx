@@ -4,32 +4,62 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
-<<<<<<< HEAD
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '@/lib/firebase'; // Ajout de l'import auth
+
 import styles from './login.module.css';
-=======
 import './login.css';
-import { div } from 'framer-motion/client';
->>>>>>> 8cac64dae5631ccf375bb3298906f4f9460b1eb7
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-  const { login } = useAuth();
+  const { login } = useAuth() || {};
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+
+    if (!login) {
+      setError('Erreur interne. Veuillez réessayer.');
+      return;
+    }
+
     try {
       await login(email, password);
-      router.push('/dashboard');
+      const user = auth.currentUser;
+
+      if (user) {
+        const userDocRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+          const userRole = userDoc.data().role;
+
+          // Redirection en fonction du rôle
+          if (userRole === 'admin') {
+            router.push('/admin/dashboard');
+          } else if (userRole === 'operateur') {
+            router.push('/operateur/dashboard');
+          } else if (userRole === 'medecin') {
+            router.push('/medecin/dashboard');
+          } else if (userRole === 'infirmier') {
+            router.push('/infirmier/dashboard');
+          } else {
+            // Si le rôle est non défini ou inconnu
+            setError('Rôle non reconnu. Accès interdit.');
+          }
+        } else {
+          setError('Aucun utilisateur trouvé dans la base de données.');
+        }
+      }
     } catch (err) {
       setError('Email ou mot de passe incorrect');
     }
   };
 
   return (
-<<<<<<< HEAD
     <div className={styles.container}>
       <div className={styles.box}>
         <h2 className={styles.title}>Connexion</h2>
@@ -37,29 +67,6 @@ export default function LoginPage() {
           {error && <div className={styles.errorMessage}>{error}</div>}
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>Email</label>
-=======
-    <div className="container">
-      
-      <div  className="logo">
-        <a href=""></a>
-      </div>
-    <div className="login-container">
-      
-
-
-      <div className="login-box">
-        <div>
-          <h2 className="login-title">Connexion</h2>
-        </div>
-        <form className="login-form" onSubmit={handleSubmit}>
-          {error && (
-            <div className="error-message">
-              {error}
-            </div>
-          )}
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">Email</label>
->>>>>>> 8cac64dae5631ccf375bb3298906f4f9460b1eb7
             <input
               id="email"
               type="email"
@@ -86,7 +93,6 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
-    </div>
     </div>
   );
 }

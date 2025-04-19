@@ -1,132 +1,119 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from './roles.module.css';
+import { collection, getDocs, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import Sidebar from '@/components/admin/Sidebar';
 import Header from '@/components/admin/Header';
+import styles from './roles.module.css';
+
+const permissionsDisponibles = [
+  'ajouter_utilisateur',
+  'modifier_utilisateur',
+  'supprimer_utilisateur',
+  'voir_dashboard',
+  'gérer_samu',
+  'gérer_hôpital',
+  'modifier_roles',
+  'accès_statistiques'
+];
 
 export default function RolesPage() {
-  const [users, setUsers] = useState([]);
-  const [roles, setRoles] = useState([]);
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [roles, setRoles] = useState<any[]>([]);
   const [newRole, setNewRole] = useState('');
-  const [permissions, setPermissions] = useState('');
+  const [message, setMessage] = useState('');
 
-  // Récupérer les utilisateurs et les rôles existants
   useEffect(() => {
-    fetch('/api/users')
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-
-    fetch('/api/roles') // API pour récupérer les rôles existants
-      .then((res) => res.json())
-      .then((data) => setRoles(data));
+    fetchRoles();
   }, []);
 
-  // Modifier le rôle d'un utilisateur
-  const updateRole = async (userId: string, newRole: string) => {
-    await fetch(`/api/users/${userId}/update_role`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ role: newRole }),
-    });
-    alert('Rôle mis à jour');
+  const fetchRoles = async () => {
+    const snapshot = await getDocs(collection(db, 'autorisation'));
+    const rolesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    setRoles(rolesData);
   };
 
-  // Ajouter un nouveau rôle avec des permissions
-  const addRole = async () => {
+  const handlePermissionChange = async (roleId: string, permission: string, isChecked: boolean) => {
+    const role = roles.find(r => r.id === roleId);
+    if (!role) return;
+
+    let updatedPermissions = [...(role.permissions || [])];
+
+    if (isChecked) {
+      updatedPermissions.push(permission);
+    } else {
+      updatedPermissions = updatedPermissions.filter(p => p !== permission);
+    }
+
+    await updateDoc(doc(db, 'autorisation', roleId), {
+      permissions: updatedPermissions,
+    });
+
+    fetchRoles();
+    setMessage(`Permission ${isChecked ? 'ajoutée à' : 'retirée de'} ${role.role}`);
+  };
+
+  const handleAddRole = async () => {
     if (!newRole.trim()) {
-      alert("Le nom du rôle est obligatoire !");
+      setMessage("Le nom du rôle est requis !");
       return;
     }
 
-    await fetch('/api/roles', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: newRole, permissions: permissions.split(',') }),
+    await setDoc(doc(db, 'autorisation', newRole.toLowerCase()), {
+      role: newRole,
+      permissions: []
     });
 
-    alert('Rôle ajouté avec succès');
     setNewRole('');
-    setPermissions('');
-    setIsFormVisible(false);
-
-    // Rafraîchir les rôles
-    fetch('/api/roles')
-      .then((res) => res.json())
-      .then((data) => setRoles(data));
+    fetchRoles();
+    setMessage(`Rôle "${newRole}" ajouté avec succès ✅`);
   };
 
   return (
     <div className={styles.adminContainer}>
-      {/* Sidebar */}
       <Sidebar />
-
-      {/* Contenu principal */}
       <div className={styles.mainContent}>
-        <Header title="Gestion des Rôles" />
+        <Header />
+        <h2 className={styles.title}>Gestion des Rôles & Permissions</h2>
 
-        {/* Bouton pour afficher/masquer le formulaire */}
-        <button
-          className={styles.toggleFormButton}
-          onClick={() => setIsFormVisible(!isFormVisible)}
-        >
-          {isFormVisible ? 'Fermer' : 'Ajouter un Rôle'}
-        </button>
+        {message && <div className={styles.message}>{message}</div>}
 
-        {/* Formulaire pour ajouter un rôle */}
-        {isFormVisible && (
-          <div className={styles.roleForm}>
-            <h2>Ajouter un Nouveau Rôle</h2>
-            <input
-              type="text"
-              placeholder="Nom du rôle"
-              value={newRole}
-              onChange={(e) => setNewRole(e.target.value)}
-              className={styles.roleInput}
-            />
-            <input
-              type="text"
-              placeholder="Permissions (séparées par des virgules)"
-              value={permissions}
-              onChange={(e) => setPermissions(e.target.value)}
-              className={styles.roleInput}
-            />
-            <button onClick={addRole} className={styles.addRoleButton}>
-              Ajouter Rôle
-            </button>
-          </div>
-        )}
+        <div className={styles.addRoleSection}>
+          <input
+            type="text"
+            placeholder="Nouveau rôle"
+            value={newRole}
+            onChange={(e) => setNewRole(e.target.value)}
+            className={styles.inputRole}
+          />
+          <button className={styles.addButton} onClick={handleAddRole}>Ajouter</button>
+        </div>
 
-        {/* Table des rôles et utilisateurs */}
-        <div className={styles.usersContainer}>
-          <h1 className={styles.title}>Gestion des Rôles</h1>
-          <table className={styles.table}>
+        <div className={styles.tableWrapper}>
+          <table className={styles.roleTable}>
             <thead>
               <tr>
-                <th>Email</th>
                 <th>Rôle</th>
-                <th>Actions</th>
+                {permissionsDisponibles.map((perm) => (
+                  <th key={perm}>{perm.replace(/_/g, ' ')}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.email}</td>
-                  <td>{user.role}</td>
-                  <td>
-                    <select
-                      value={user.role}
-                      onChange={(e) => updateRole(user.id, e.target.value)}
-                      className={styles.select}
-                    >
-                      {roles.map((role) => (
-                        <option key={role.name} value={role.name}>
-                          {role.name}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
+              {roles.map((role) => (
+                <tr key={role.id}>
+                  <td className={styles.roleName}>{role.role}</td>
+                  {permissionsDisponibles.map((perm) => (
+                    <td className={styles.checkboxCell} key={perm}>
+                      <input
+                        type="checkbox"
+                        checked={role.permissions?.includes(perm)}
+                        onChange={(e) =>
+                          handlePermissionChange(role.id, perm, e.target.checked)
+                        }
+                      />
+                    </td>
+                  ))}
                 </tr>
               ))}
             </tbody>

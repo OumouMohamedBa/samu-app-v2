@@ -2,42 +2,69 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaUser, FaChartBar, FaHistory, FaCogs, FaHome, FaAmbulance, FaUsers, FaTachometerAlt } from 'react-icons/fa';
+import {
+  FaUser,
+  FaChartBar,
+  FaHistory,
+  FaCogs,
+  FaMapMarkerAlt,
+  FaHome,
+  FaAmbulance,
+  FaUsers,
+  FaPhone,
+  FaListUl,
+  
+} from 'react-icons/fa';
+import { useState } from 'react';
 import styles from './Sidebar.module.css';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Sidebar() {
+  const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const { userData } = useAuth(); // 🔹 Accès au rôle
+
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed);
+  };
+
+  // 🔹 Menus par rôle
+  const adminMenu = [
+    { href: '/admin/dashboard', icon: <FaHome />, label: 'Tableau de Bord' },
+    { href: '/admin/users', icon: <FaUsers />, label: 'Utilisateurs' },
+    { href: '/admin/role', icon: <FaUser />, label: 'Rôles & Permissions' },
+    { href: '/admin/baseSamu', icon: <FaMapMarkerAlt />, label: 'Bases SAMU' },
+    { href: '/admin/ambulance/historique', icon: <FaHistory />, label: 'Historique' },
+    { href: '/admin/statistiques', icon: <FaChartBar />, label: 'Statistiques' },
+    { href: '/admin/setting', icon: <FaCogs />, label: 'Paramètres' }
+  ];
+
+  const operateurMenu = [
+    { href: '/operateur/dashboard', icon: <FaHome />, label: 'Accueil' },
+    { href: '/operateur/notifications', icon: <FaPhone />, label: 'Appels ' },
+    { href: '/operateur/notifications/liste', icon: <FaListUl />, label: 'Notifications' },
+    { href: '/operateur/historique', icon: <FaHistory />, label: 'Historique ' },
+    { href: '/operateur/statistiques', icon: <FaChartBar />, label: 'Statistiques' },
+    { href: '/operateur/parametres', icon: <FaCogs />, label: 'Paramètres' }
+  ];
+
+  const selectedMenu = userData?.role === 'admin' ? adminMenu : userData?.role === 'operateur' ? operateurMenu : [];
 
   return (
-    <nav className={styles.sidebar}>
-      <h2 className={styles.logo}>🚑 Ambulance Connect</h2>
+    
+    <nav className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
+      <button onClick={toggleSidebar} className={styles.toggleButton}>
+        {collapsed ? 'Ξ' : '☰'}
+      </button>
+
+      <h2 className={styles.logo}>🚑SAMU</h2>
 
       <ul className={styles.menu}>
-        {[
-          { href: '/dashboard', icon: <FaHome />, label: 'Tableau de Bord' },
-          { href: '/admin/users', icon: <FaUsers />, label: 'Utilisateurs' },
-          { href: '/admin/role', icon: <FaUser />, label: 'Rôles & Permissions' },
-          { href: '/admin/ambulance', icon: <FaAmbulance />, label: 'Suivi Ambulances' },
-          { href: '/admin/affectation', icon: <FaAmbulance />, label: 'Affectation' },
-          { href: '/admin/ambulance/historique', icon: <FaHistory />, label: 'Historique' },
-        ].map((item, index) => (
+        {selectedMenu.map((item, index) => (
           <li key={index} className={`${styles.menuItem} ${pathname === item.href ? styles.active : ''}`}>
             <Link href={item.href} className={styles.menuLink}>
-              {item.icon} <span>{item.label}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      {/* Section en bas */}
-      <ul className={styles.menuBottom}>
-        {[
-          { href: '/admin/statistiques', icon: <FaChartBar />, label: 'Statistiques' },
-          { href: '/admin/setting', icon: <FaCogs />, label: 'Paramètres' },
-        ].map((item, index) => (
-          <li key={index} className={`${styles.menuBottomItem} ${pathname === item.href ? styles.activeBottom : ''}`}>
-            <Link href={item.href} className={styles.menuBottomLink}>
-              {item.icon} <span>{item.label}</span>
+              {item.icon}
+              {!collapsed && <span>{item.label}</span>}
             </Link>
           </li>
         ))}

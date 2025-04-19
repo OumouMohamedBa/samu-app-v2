@@ -1,9 +1,9 @@
+/* 🔷 En-tête principal */
 .header {
-  position: fixed; /* Fixe le header en haut */
+  position: fixed;
   top: 0;
   left: 10;
   width: 70%;
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +12,7 @@
   color: #006233;
   font-weight: bold;
   border-bottom: 3px solid #006233;
-  z-index: 100; /* Toujours au-dessus des autres éléments */
+  z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -27,24 +27,52 @@
   color: #D91E18; /* Rouge Mauritanie */
 }
 
+/* 🔷 Zone droite (utilisateur + logout) */
 .navRight {
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.userWrapper {
+  position: relative;
+  margin-right: 10px;
 }
 
 .userIcon {
-  font-size: 1.8rem;
-  margin-right: 10px;
+  font-size: 2rem;
   color: #006233;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 6px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
+.userIcon:hover {
+  transform: scale(1.15);
+  background-color: #e6f5eb;
+}
+.activeIcon {
+  background-color: #d4f1e3;
+  box-shadow: 0 0 0 2px #28a745;
+}
+
+
+.userIcon:hover {
+  transform: scale(1.1);
+}
+
+/* 🔷 Texte de l'utilisateur */
 .userName {
-  margin-right: 15px;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 5px;
+  color: #333;
 }
 
+/* 🔷 Bouton de déconnexion */
 .logoutButton {
-  background-color: #D91E18; /* Rouge Mauritanie */
+  background-color: #D91E18;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -58,4 +86,59 @@
 .logoutButton:hover {
   background-color: #A71512;
   transform: scale(1.1);
+}
+
+/* 🔷 Menu déroulant des actions */
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 10px;
+  padding: 12px 15px;
+  min-width: 220px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.userName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #006233;
+  text-align: left;
+  padding-left: 4px;
+}
+
+.actionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.actionItem {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.actionItem:hover {
+  background-color: #f0f8f3;
+  color: #006233;
+}
+
+.noPermission {
+  font-style: italic;
+  color: #888;
+  padding: 8px;
+  text-align: center;
 }

@@ -1,99 +1,97 @@
-/* Conteneur principal */
 .adminContainer {
-    display: flex;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
-  
-  /* Contenu principal */
-  .mainContent {
-    flex: 1;
-    padding: 20px;
-    margin-top: 120px;
-  }
-  
-  /* Titre */
-  .title {
-    font-size: 1.8rem;
-    color: #006233;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Table des utilisateurs */
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .table th, .table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .table th {
-    background-color: #006233;
-    color: white;
-  }
-  
-  /* Bouton d'ajout de rôle */
-  .toggleFormButton {
-    display: block;
-    width: 200px;
-    margin: 10px auto;
-    padding: 10px;
-    background-color: #FFD700;
-    color: #006233;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .toggleFormButton:hover {
-    background-color: #E6C200;
-  }
-  
-  /* Formulaire */
-  .roleForm {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-top: 20px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Input */
-  .roleInput {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  
-  /* Bouton ajouter rôle */
-  .addRoleButton {
-    background-color: #006233;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .addRoleButton:hover {
-    background-color: #004d33;
-  }
-  
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 30px;
+  margin-top: 100px;
+}
+
+.title {
+  font-size: 24px;
+  color: #006233;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.addRoleSection {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.inputRole {
+  flex: 1;
+  padding: 10px;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.addButton {
+  background-color: #006233;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #004d26;
+}
+
+.message {
+  background-color: #e6ffe6;
+  color: #006233;
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid #00b300;
+  border-radius: 6px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.roleTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.roleTable th,
+.roleTable td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+}
+
+.roleTable th {
+  background-color: #006233;
+  color: white;
+}
+
+.roleName {
+  font-weight: bold;
+  color: #006233;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.checkboxCell input {
+  transform: scale(1.2);
+  cursor: pointer;
+}

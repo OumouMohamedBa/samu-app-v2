@@ -88,3 +88,27 @@ th, td {
   text-align: center;
   margin-bottom: 15px;
 }
+:root.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+:root.dark {
+  --background-color: #121212;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+html.light {
+  background-color: white;
+  color: black;
+}
+
+html.dark {
+  background-color: #121212;
+  color: white;
+}
