@@ -1,12 +1,12 @@
-// ✅ next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // ✅ mode export
   eslint: {
-    ignoreDuringBuilds: true, // Ignore ESLint errors on build
+    ignoreDuringBuilds: true
   },
   typescript: {
-    ignoreBuildErrors: true,  // Ignore TypeScript errors on build
-  },
+    ignoreBuildErrors: true
+  }
 };
 
 module.exports = nextConfig;
